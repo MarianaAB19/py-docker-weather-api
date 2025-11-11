@@ -2,11 +2,18 @@ import os
 import requests
 
 
+api_url = "http://api.weatherapi.com/v1/current.json"
+city = "Paris"
+
+
 def get_weather() -> None:
-    api_url = "http://api.weatherapi.com/v1/current.json"
-    city = "Paris"
     api_key = os.getenv("API_KEY")
-    result = requests.get(api_url, params={"key": api_key, "q": city})
+    try:
+        result = requests.get(api_url, params={"key": api_key, "q": city})
+        result.raise_for_status()
+    except requests.RequestException as exc:
+        print(f"Error: {exc}")
+        return
     data = result.json()
     print(
         f"Weather in {city}, "
