@@ -18,13 +18,13 @@ def get_weather() -> None:
     print(
         f"Weather in {CITY}, "
         f"{data.get('location').get('country')} "
-        f"{data.get('current').get('last_updated')}"
+        f"{data.get('current').get('last_updated')}\n"
+        f"Condition: {data.get('current').get('condition').get('text')}\n"
+        f"Temperature: {data.get('current').get('temp_c')} °C\n"
+        f"Wind: {data.get('current').get('wind_kph')} km/h\n"
+        f"Humidity: {data.get('current').get('humidity')} %\n"
+        f"Cloud: {data.get('current').get('cloud')} %"
     )
-    print(f"Condition: {data.get('current').get('condition').get('text')}")
-    print(f"Temperature: {data.get('current').get('temp_c')} °C")
-    print(f"Wind: {data.get('current').get('wind_kph')} km/h")
-    print(f"Humidity: {data.get('current').get('humidity')} %")
-    print(f"Cloud: {data.get('current').get('cloud')} %")
 
 
 if __name__ == "__main__":
