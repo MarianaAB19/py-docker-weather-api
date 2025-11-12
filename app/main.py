@@ -2,21 +2,21 @@ import os
 import requests
 
 
-api_url = "http://api.weatherapi.com/v1/current.json"
-city = "Paris"
+API_URL: str = "http://api.weatherapi.com/v1/current.json"
+CITY: str = "Paris"
 
 
 def get_weather() -> None:
     api_key = os.getenv("API_KEY")
     try:
-        result = requests.get(api_url, params={"key": api_key, "q": city})
+        result = requests.get(API_URL, params={"key": api_key, "q": CITY})
         result.raise_for_status()
     except requests.RequestException as exc:
         print(f"Error: {exc}")
         return
     data = result.json()
     print(
-        f"Weather in {city}, "
+        f"Weather in {CITY}, "
         f"{data.get('location').get('country')} "
         f"{data.get('current').get('last_updated')}"
     )
